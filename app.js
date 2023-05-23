@@ -8,12 +8,16 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 // for db
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
+//  load env vars
+const dotenv = require("dotenv")
+dotenv.config();
 
 // set the template engine to use
 app.set('view engine', 'ejs');
 
-const dbURL = "mongodb+srv://chymdy:chymdy@testcluster.ttrvryp.mongodb.net/testDb?retryWrites=true&w=majority";
+const dbURL = process.env.DBURL;
 mongoose.connect(dbURL)
     .then((result) => {
         app.listen(3000);
